@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Natiijooyinka - AGPSS 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f0fe 0%, #d4e4f7 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+        .container {
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,20,50,0.2);
+            max-width: 1000px;
+            width: 100%;
+            padding: 25px 28px 35px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #1a6b3f;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo {
+            background: #1a6b3f;
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;
+            padding: 8px 16px;
+            border-radius: 12px;
+        }
+        .logo span { color: #f9c74f; }
+        .title h1 { font-size: 22px; color: #0b2545; }
+        .title p { color: #4a6a8b; font-size: 14px; }
+        .badge {
+            background: #f9c74f;
+            color: #1a6b3f;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 16px;
+        }
+        .search-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #f2f7fc;
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .search-box input {
+            flex: 1;
+            min-width: 180px;
+            padding: 12px 16px;
+            border: 2px solid #cbdae9;
+            border-radius: 40px;
+            font-size: 16px;
+            outline: none;
+            background: #fff;
+        }
+        .search-box input:focus { border-color: #1a6b3f; box-shadow: 0 0 0 4px rgba(26,107,63,0.15); }
+        .search-box button {
+            background: #1a6b3f;
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .search-box button:hover { background: #0f4f2e; transform: scale(1.02); }
+        .msg {
+            text-align: center;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .msg.error { display: block; background: #fee9e7; color: #b33a34; border-left: 6px solid #b33a34; }
+        .msg.success { display: block; background: #e3f3e9; color: #1e6f3f; border-left: 6px solid #1e6f3f; }
+        .card { display: none; animation: fadeIn 0.4s ease; }
+        .card.show { display: block; }
+        @keyframes fadeIn { 0% { opacity:0; transform:translateY(20px); } 100% { opacity:1; transform:translateY(0); } }
+        .result-header {
+            background: linear-gradient(145deg, #0b2545, #1a3a6b);
+            color: #fff;
+            padding: 16px 22px;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .result-header .name { font-size: 20px; font-weight: 700; }
+        .result-header .roll {
+            background: rgba(255,255,255,0.15);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 30px;
+            background: #f7faff;
+            padding: 14px 22px;
+            border-bottom: 3px solid #d4e4f7;
+        }
+        .stats div { font-size: 15px; }
+        .stats span { font-weight: 700; color: #0b2545; }
+        .stats .grade { font-weight: 800; color: #1a6b3f; font-size: 18px; }
+        .stats .grade.fail { color: #b33a34; }
+        .stats .class-badge {
+            background: #1a3a6b;
+            color: #fff;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+        th {
+            background: #e8f0fe;
+            color: #0b2545;
+            font-weight: 700;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 3px solid #1a3a6b;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2ebf6;
+        }
+        tr:hover td { background: #f5f9ff; }
+        .subject { font-weight: 600; color: #1a3a6b; }
+        .score { font-weight: 700; font-size: 16px; }
+        .score.pass { color: #1e6f3f; }
+        .score.fail { color: #b33a34; }
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 12px;
+            color: #6a7f9b;
+            border-top: 2px solid #e2ebf6;
+            padding-top: 16px;
+        }
+        .footer strong { color: #0b2545; }
+        @media (max-width:700px) {
+            .container { padding: 16px; }
+            .header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .title h1 { font-size: 18px; }
+            .search-box { flex-direction: column; align-items: stretch; padding: 14px 16px; }
+            .search-box button { width: 100%; justify-content: center; }
+            .result-header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; }
+            .result-header .name { font-size: 18px; }
+            .stats { flex-direction: column; gap: 6px; padding: 12px 16px; }
+            table { font-size: 13px; }
+            th, td { padding: 6px 8px; }
+        }
+        @media (max-width:400px) {
+            .container { padding: 12px; }
+            .logo { font-size: 16px; padding: 6px 12px; }
+            .title h1 { font-size: 16px; }
+            .badge { font-size: 13px; padding: 4px 12px; }
+            .search-box input { font-size: 14px; padding: 10px 14px; }
+            .search-box button { font-size: 14px; padding: 10px 20px; }
+            .result-header .name { font-size: 16px; }
+            .stats div { font-size: 13px; }
+            table { font-size: 12px; }
+            th, td { padding: 4px 6px; }
+            .score { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="logo-area">
+            <div class="logo">A<span>G</span>PSS</div>
+            <div class="title">
+                <h1>Natiijooyinka Imtixaanka</h1>
+                <p>Sannadka 2025/2026</p>
+            </div>
+        </div>
+        <div class="badge">JULY 2026</div>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="rollInput" placeholder="Geli Roll No (tusaale: 713)" autofocus />
+        <button id="searchBtn">🔍 Raadi</button>
+    </div>
+
+    <div id="msg" class="msg"></div>
+
+    <div id="card" class="card">
+        <div class="result-header">
+            <div>
+                <div class="name" id="sName">-</div>
+                <div style="font-size:13px; opacity:0.8;">Magaca Ardayga</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <span class="class-badge" id="sClass">Fasalka: -</span>
+                <span class="roll" id="sRoll">-</span>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div>🏷️ Wadarta: <span id="total">0</span></div>
+            <div>📊 Celcelis: <span id="avg">0.00</span>%</div>
+            <div>🎓 Qiimaynta: <span id="gradeDisplay" class="grade">-</span></div>
+            <div>📌 Maaddooyin: <span id="count">0</span></div>
+            <div>🏅 Heerka: <span id="levelDisplay" style="font-weight:700;color:#1a3a6b;">-</span></div>
+        </div>
+
+        <table>
+            <thead><tr><th>Maaddada</th><th style="text-align:right;">Dhibcaha</th></tr></thead>
+            <tbody id="subjectsBody"></tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <strong>© 2026 AGPSS</strong> · All rights reserved.<br />
+        <span>Gudbay ≥ 50%</span>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// XOGTA ARDAYDA - WAXAAD KU DARI KARTAA ARDAY KALE
+// ============================================================
+
+const students = [
+
+// ===== FASALKA 1 (KOWAAD) =====
+{roll:111, name:"Bushro Maxamed Cumar", class:"1", sub:{English:100,Carabi:80,Somali:100,Far:100,Xisaab:100}},
+{roll:13, name:"Faadumo Maxamed Salaad", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:97}},
+{roll:4, name:"Maxamed Maxamuud Bashiir", class:"1", sub:{English:100,Carabi:60,Somali:100,Far:100,Xisaab:100}},
+{roll:26, name:"Maxamuud Mahdi Cali", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:96}},
+{roll:114, name:"Nasteexo C/qaadir Xirsi", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:96}},
+{roll:9, name:"Saynab Cawil Yuusuf", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:91}},
+{roll:27, name:"C/laahi Maxamed Siciid", class:"1", sub:{English:100,Carabi:60,Somali:100,Far:100,Xisaab:95}},
+{roll:10, name:"Mumtaas Haashim Nuur", class:"1", sub:{English:100,Carabi:60,Somali:100,Far:100,Xisaab:94}},
+{roll:117, name:"Asmo C/naasir C/risaaq", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:88}},
+{roll:21, name:"Muxiyadiin Rooble cabdi", class:"1", sub:{English:100,Carabi:60,Somali:100,Far:100,Xisaab:89}},
+{roll:14, name:"Faadumo Siciid Shire", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:84}},
+{roll:116, name:"Fardowso Siciid Saalax", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:84}},
+{roll:12, name:"Aamino Cabdi Hiirad", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:83}},
+{roll:19, name:"Maxamed Sciid C/qadir", class:"1", sub:{English:100,Carabi:60,Somali:90,Far:100,Xisaab:90}},
+{roll:108, name:"C/rixmaan Burhaan Khaalid", class:"1", sub:{English:100,Carabi:60,Somali:80,Far:100,Xisaab:98}},
+{roll:3, name:"Axmed Maxamed Khaalid", class:"1", sub:{English:100,Carabi:64,Somali:70,Far:100,Xisaab:100}},
+{roll:11, name:"Isro Jimcaale Yuusuf", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:66}},
+{roll:118, name:"Fahmo Maxamed C/qaadir", class:"1", sub:{English:100,Carabi:60,Somali:100,Far:100,Xisaab:70}},
+{roll:113, name:"Bahjo Faarax Maxamed", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:65}},
+{roll:121, name:"Ayaan Muqtaar C/samad", class:"1", sub:{English:100,Carabi:64,Somali:100,Far:100,Xisaab:64}},
+{roll:23, name:"C/rishiid C/qaadir Cismaan", class:"1", sub:{English:100,Carabi:40,Somali:100,Far:100,Xisaab:86}},
+{roll:106, name:"C/rixmaan Maxamed Nuur", class:"1", sub:{English:100,Carabi:60,Somali:80,Far:100,Xisaab:85}},
+{roll:37, name:"Muscab Rooble Cabdi", class:"1", sub:{English:100,Carabi:64,Somali:60,Far:100,Xisaab:100}},
+{roll:109, name:"C/waaxid C/rishiid Maxamed", class:"1", sub:{English:100,Carabi:60,Somali:80,Far:100,Xisaab:84}},
+{roll:15, name:"Nafiso Maxamed Guure", class:"1", sub:{English:100,Carabi:64,Somali:70,Far:100,Xisaab:88}},
+{roll:20, name:"Ayuub Ayaanle Ismaaciil", class:"1", sub:{English:100,Carabi:60,Somali:90,Far:100,Xisaab:72}},
+{roll:16, name:"Fartuun Maxamed Salaad", class:"1", sub:{English:100,Carabi:64,Somali:80,Far:100,Xisaab:74}},
+{roll:119, name:"Sumayo Bashiir C/laahi", class:"1", sub:{English:100,Carabi:60,Somali:100,Far:100,Xisaab:58}},
+{roll:35, name:"Muxiyadiin Cabdi Maxamed", class:"1", sub:{English:100,Carabi:46,Somali:70,Far:100,Xisaab:100}},
+{roll:120, name:"Aamiiro Jaamac Maxamuud", class:"1", sub:{English:100,Carabi:30,Somali:100,Far:100,Xisaab:86}},
+{roll:36, name:"Sundus Ayaanle Yuusuf", class:"1", sub:{English:100,Carabi:64,Somali:70,Far:100,Xisaab:80}},
+{roll:105, name:"C/xakiin Siciid Maxamed", class:"1", sub:{English:100,Carabi:60,Somali:80,Far:100,Xisaab:74}},
+{roll:7, name:"Cismaan Maxamuud Axmed", class:"1", sub:{English:80,Carabi:64,Somali:100,Far:100,Xisaab:70}},
+{roll:107, name:"Axmed C/qaadir Muumin", class:"1", sub:{English:100,Carabi:60,Somali:80,Far:100,Xisaab:65}},
+{roll:101, name:"Maxamad Bashiir Axmad", class:"1", sub:{English:100,Carabi:60,Somali:70,Far:100,Xisaab:72}},
+{roll:22, name:"Faaiso Axmed Maxamed", class:"1", sub:{English:90,Carabi:32,Somali:100,Far:100,Xisaab:68}},
+{roll:6, name:"C/laahi Burhaan Khaalid", class:"1", sub:{English:76,Carabi:64,Somali:80,Far:100,Xisaab:70}},
+{roll:5, name:"Maxamuud Axmed Muuse", class:"1", sub:{English:90,Carabi:48,Somali:80,Far:100,Xisaab:69}},
+{roll:28, name:"Maxamed Nuur Ciise", class:"1", sub:{English:90,Carabi:30,Somali:100,Far:100,Xisaab:66}},
+{roll:34, name:"Fardowso Siciid Yuusuf", class:"1", sub:{English:85,Carabi:60,Somali:60,Far:100,Xisaab:67}},
+{roll:31, name:"Bishaaro Nuur Cise", class:"1", sub:{English:84,Carabi:30,Somali:100,Far:100,Xisaab:55}},
+{roll:103, name:"Cabdulahi Cismaan Cabdi", class:"1", sub:{English:82,Carabi:48,Somali:60,Far:100,Xisaab:66}},
+{roll:122, name:"Faadumo Maxamad Cabdi", class:"1", sub:{English:70,Carabi:64,Somali:50,Far:80,Xisaab:66}},
+{roll:110, name:"Umaymo C/naasir C/risaaq", class:"1", sub:{English:77,Carabi:40,Somali:60,Far:100,Xisaab:49}},
+{roll:104, name:"Axmed Cabdinasir Cabdirsaaq", class:"1", sub:{English:75,Carabi:32,Somali:60,Far:100,Xisaab:49}},
+{roll:123, name:"Zuhayro Jaamac Geele", class:"1", sub:{English:70,Carabi:60,Somali:50,Far:65,Xisaab:45}},
+
+// ===== FASALKA 2 (LABAAD) =====
+{roll:210, name:"Farxiyo Maxamad Axmad", class:"2", sub:{Carabi:74,Tarbiyo:95,English:100,Say:100,"C/B":98,FAR:100,SOM:100,XIS:68}},
+{roll:215, name:"Sahro Maxamuud Khaalid", class:"2", sub:{Carabi:75,Tarbiyo:82,English:95,Say:100,"C/B":100,FAR:100,SOM:100,XIS:73}},
+{roll:213, name:"Caasho Maxamad Nuur", class:"2", sub:{Carabi:65,Tarbiyo:94,English:85,Say:98,"C/B":100,FAR:100,SOM:100,XIS:70}},
+{roll:202, name:"Maxamud Xared C/raxman", class:"2", sub:{Carabi:75,Tarbiyo:62,English:100,Say:100,"C/B":100,FAR:100,SOM:98,XIS:74}},
+{roll:217, name:"Laki Bashiir Axmad", class:"2", sub:{Carabi:75,Tarbiyo:74,English:90,Say:100,"C/B":96,FAR:100,SOM:96,XIS:90}},
+{roll:203, name:"Yuusuf Siciid Khaliif", class:"2", sub:{Carabi:65,Tarbiyo:94,English:66,Say:69,"C/B":98,FAR:100,SOM:96,XIS:82}},
+{roll:201, name:"Muuse Bashiir Maxamad", class:"2", sub:{Carabi:60,Tarbiyo:66,English:75,Say:100,"C/B":100,FAR:95,SOM:90,XIS:62}},
+{roll:219, name:"C/raxman C/weli Aadan", class:"2", sub:{Carabi:55,Tarbiyo:94,English:75,Say:62,"C/B":95,FAR:94,SOM:93,XIS:71}},
+{roll:211, name:"Xafso Maxamad C/rishiid", class:"2", sub:{Carabi:60,Tarbiyo:62,English:73,Say:87,"C/B":97,FAR:93,SOM:80,XIS:78}},
+{roll:220, name:"C/qaadir Maxamed Ibrahim", class:"2", sub:{Carabi:35,Tarbiyo:96,English:60,Say:90,"C/B":81,FAR:92,SOM:100,XIS:67}},
+{roll:212, name:"Xaliimo Xaamid Shire", class:"2", sub:{Carabi:65,Tarbiyo:67,English:90,Say:64,"C/B":74,FAR:90,SOM:86,XIS:81}},
+{roll:204, name:"C/weli Cabdi Muuse", class:"2", sub:{Carabi:60,Tarbiyo:74,English:90,Say:60,"C/B":90,FAR:91,SOM:82,XIS:66}},
+{roll:209, name:"Salmo Cali Cabdi", class:"2", sub:{Carabi:60,Tarbiyo:82,English:90,Say:56,"C/B":79,FAR:90,SOM:81,XIS:74}},
+{roll:205, name:"Ayuub Maxamad Ismacil", class:"2", sub:{Carabi:50,Tarbiyo:83,English:60,Say:74,"C/B":97,FAR:85,SOM:86,XIS:65}},
+{roll:216, name:"Mustalifo Siciid Saalax", class:"2", sub:{Carabi:50,Tarbiyo:62,English:60,Say:81,"C/B":84,FAR:80,SOM:93,XIS:68}},
+{roll:208, name:"C/casiis C/qadir Maxamad", class:"2", sub:{Carabi:70,Tarbiyo:70,English:68,Say:78,"C/B":83,FAR:78,SOM:54,XIS:68}},
+{roll:214, name:"kaafi Maxamuud Muuse", class:"2", sub:{Carabi:30,Tarbiyo:82,English:81,Say:71,"C/B":72,FAR:80,SOM:82,XIS:70}},
+{roll:218, name:"Maxamuud Muuse Maax", class:"2", sub:{Carabi:45,Tarbiyo:82,English:78,Say:50,"C/B":38,FAR:80,SOM:88,XIS:69}},
+
+// ===== FASALKA 3 (SADDEXAAD) =====
+{roll:324, name:"C/shukuur C/salaan Shire", class:"3", sub:{Tar:80,Car:84,Say:86,"C/B":94,FAR:100,SOM:100,XIS:84,Eng:100}},
+{roll:207, name:"Liibaan Cawil Ibraahim", class:"3", sub:{Tar:96,Car:80,Say:100,"C/B":94,FAR:100,SOM:100,XIS:67,Eng:90}},
+{roll:309, name:"C/raxmaan Khayre Cabdi", class:"3", sub:{Tar:88,Car:84,Say:73,"C/B":100,FAR:100,SOM:96,XIS:94,Eng:86}},
+{roll:362, name:"Jaamac C/risaq Aadan", class:"3", sub:{Tar:96,Car:72,Say:90,"C/B":100,FAR:100,SOM:84,XIS:82,Eng:86}},
+{roll:307, name:"Khadar Axmad Maxamad", class:"3", sub:{Tar:88,Car:80,Say:97,"C/B":89,FAR:100,SOM:93,XIS:67,Eng:95}},
+{roll:336, name:"Maxamad Farxaan Cabdi", class:"3", sub:{Tar:84,Car:64,Say:94,"C/B":83,FAR:100,SOM:100,XIS:81,Eng:96}},
+{roll:323, name:"Muno Siciid Cumar", class:"3", sub:{Tar:76,Car:56,Say:94,"C/B":95,FAR:100,SOM:100,XIS:84,Eng:96}},
+{roll:318, name:"Ayaan Cali Axmad", class:"3", sub:{Tar:88,Car:88,Say:71,"C/B":100,FAR:100,SOM:100,XIS:67,Eng:86}},
+{roll:325, name:"Maxamad Cali Saalax", class:"3", sub:{Tar:96,Car:84,Say:87,"C/B":83,FAR:100,SOM:66,XIS:80,Eng:100}},
+{roll:331, name:"Faarax Barkhad Muuse", class:"3", sub:{Tar:80,Car:84,Say:95,"C/B":88,FAR:100,SOM:82,XIS:64,Eng:100}},
+{roll:363, name:"Isro Muqtaar C/samad", class:"3", sub:{Tar:68,Car:80,Say:91,"C/B":79,FAR:100,SOM:100,XIS:77,Eng:92}},
+{roll:358, name:"Axmed Maxamed Siyaad", class:"3", sub:{Tar:80,Car:64,Say:78,"C/B":84,FAR:100,SOM:100,XIS:80,Eng:86}},
+{roll:348, name:"Xaawo C/qaadir Hiirad", class:"3", sub:{Tar:56,Car:84,Say:83,"C/B":95,FAR:100,SOM:100,XIS:65,Eng:86}},
+{roll:345, name:"Fardowsa Rooble Cabdi", class:"3", sub:{Tar:88,Car:60,Say:89,"C/B":95,FAR:100,SOM:88,XIS:72,Eng:76}},
+{roll:349, name:"Xaawo Maxamed Maxamud", class:"3", sub:{Tar:96,Car:68,Say:62,"C/B":100,FAR:100,SOM:78,XIS:68,Eng:95}},
+{roll:308, name:"Abshir C/lahi Yuusuf", class:"3", sub:{Tar:76,Car:92,Say:68,"C/B":95,FAR:100,SOM:82,XIS:69,Eng:83}},
+{roll:301, name:"Maxamuud Maxamad Cumar", class:"3", sub:{Tar:88,Car:68,Say:59,"C/B":88,FAR:100,SOM:96,XIS:69,Eng:96}},
+{roll:303, name:"Asiyo Abshir C/lahi", class:"3", sub:{Tar:76,Car:72,Say:87,"C/B":84,FAR:100,SOM:76,XIS:72,Eng:96}},
+{roll:359, name:"Maxamed Siciid Yuusuf", class:"3", sub:{Tar:48,Car:80,Say:67,"C/B":87,FAR:100,SOM:100,XIS:85,Eng:95}},
+{roll:338, name:"Nafiso C/risaaq C/rixmaan", class:"3", sub:{Tar:48,Car:82,Say:88,"C/B":77,FAR:100,SOM:100,XIS:74,Eng:92}},
+{roll:310, name:"Maxamuud Maxamad Jaamac", class:"3", sub:{Tar:96,Car:88,Say:100,"C/B":96,FAR:100,SOM:84,XIS:0,Eng:95}},
+{roll:357, name:"Axmed Maxamud Jaamac", class:"3", sub:{Tar:92,Car:60,Say:100,"C/B":68,FAR:100,SOM:56,XIS:86,Eng:96}},
+{roll:333, name:"Maxamuud Bashiir Axmad", class:"3", sub:{Tar:80,Car:92,Say:73,"C/B":89,FAR:100,SOM:80,XIS:68,Eng:76}},
+{roll:206, name:"C/nasir Maxamad Cali", class:"3", sub:{Tar:68,Car:80,Say:88,"C/B":100,FAR:100,SOM:68,XIS:63,Eng:90}},
+{roll:315, name:"Saabiriin C/casiis Aadan", class:"3", sub:{Tar:68,Car:60,Say:80,"C/B":95,FAR:100,SOM:76,XIS:84,Eng:90}},
+{roll:306, name:"Muuse Siciid Khaliif", class:"3", sub:{Tar:68,Car:68,Say:75,"C/B":86,FAR:100,SOM:84,XIS:73,Eng:96}},
+{roll:311, name:"Maaido Maxamuud Ciise", class:"3", sub:{Tar:84,Car:72,Say:91,"C/B":89,FAR:100,SOM:62,XIS:65,Eng:86}},
+{roll:330, name:"Maxamuud C/lahi Muuse", class:"3", sub:{Tar:96,Car:60,Say:94,"C/B":100,FAR:100,SOM:72,XIS:67,Eng:60}},
+{roll:361, name:"Maxamed Axmed Caynab", class:"3", sub:{Tar:72,Car:60,Say:60,"C/B":100,FAR:100,SOM:58,XIS:94,Eng:92}},
+{roll:334, name:"Siciid Maxamad Muumin", class:"3", sub:{Tar:72,Car:64,Say:60,"C/B":87,FAR:100,SOM:78,XIS:82,Eng:90}},
+{roll:355, name:"C/rixmaan Axmed Faarax", class:"3", sub:{Tar:60,Car:80,Say:83,"C/B":87,FAR:100,SOM:60,XIS:81,Eng:81}},
+{roll:360, name:"Faarax Siciid Maxamed", class:"3", sub:{Tar:60,Car:80,Say:82,"C/B":87,FAR:100,SOM:74,XIS:80,Eng:68}},
+{roll:320, name:"Farxiyo Qaasin Aadan", class:"3", sub:{Tar:84,Car:84,Say:79,"C/B":87,FAR:100,SOM:64,XIS:63,Eng:64}},
+{roll:351, name:"Cadnaan Caydiid C/rixmaan", class:"3", sub:{Tar:56,Car:68,Say:64,"C/B":79,FAR:100,SOM:100,XIS:63,Eng:91}},
+{roll:339, name:"Shaadiyo Faarax Maxamed", class:"3", sub:{Tar:56,Car:64,Say:80,"C/B":94,FAR:100,SOM:60,XIS:76,Eng:90}},
+{roll:344, name:"Saabiriin Cabdi Hiirad", class:"3", sub:{Tar:68,Car:64,Say:71,"C/B":87,FAR:100,SOM:68,XIS:72,Eng:82}},
+{roll:354, name:"C/maalik Caynaashe Khaalid", class:"3", sub:{Tar:60,Car:60,Say:76,"C/B":78,FAR:100,SOM:69,XIS:72,Eng:91}},
+{roll:346, name:"Xaalimo Axmed C/casis", class:"3", sub:{Tar:68,Car:64,Say:70,"C/B":58,FAR:100,SOM:66,XIS:84,Eng:91}},
+{roll:350, name:"Maryan Axmed C/laahi", class:"3", sub:{Tar:88,Car:84,Say:51,"C/B":72,FAR:100,SOM:62,XIS:72,Eng:67}},
+{roll:319, name:"Xamdi C/qadir Axmad", class:"3", sub:{Tar:52,Car:68,Say:69,"C/B":78,FAR:100,SOM:76,XIS:81,Eng:71}},
+{roll:327, name:"Axmad Haaruun Maxamud", class:"3", sub:{Tar:84,Car:48,Say:63,"C/B":83,FAR:100,SOM:72,XIS:69,Eng:66}},
+{roll:329, name:"Anas Maxamud Siciid", class:"3", sub:{Tar:44,Car:68,Say:66,"C/B":84,FAR:100,SOM:64,XIS:64,Eng:80}},
+{roll:321, name:"Faadumo Maxamad C/qadir", class:"3", sub:{Tar:76,Car:60,Say:38,"C/B":71,FAR:100,SOM:70,XIS:67,Eng:86}},
+{roll:305, name:"Nadiiro Muuse Maax", class:"3", sub:{Tar:52,Car:80,Say:49,"C/B":79,FAR:100,SOM:82,XIS:68,Eng:57}},
+{roll:322, name:"Mastuur Siciid Saalax", class:"3", sub:{Tar:60,Car:64,Say:74,"C/B":83,FAR:100,SOM:50,XIS:72,Eng:61}},
+{roll:337, name:"Mushtaaq Cigal Muumin", class:"3", sub:{Tar:72,Car:68,Say:81,"C/B":94,FAR:100,SOM:68,XIS:0,Eng:80}},
+{roll:342, name:"Balqiiis Warsame Barre", class:"3", sub:{Tar:60,Car:60,Say:70,"C/B":57,FAR:100,SOM:56,XIS:81,Eng:76}},
+{roll:304, name:"Laki Nuur Siciid", class:"3", sub:{Tar:60,Car:60,Say:50,"C/B":88,FAR:100,SOM:50,XIS:81,Eng:70}},
+{roll:340, name:"Saytuun Jaamac Geelle", class:"3", sub:{Tar:80,Car:80,Say:55,"C/B":60,FAR:100,SOM:54,XIS:64,Eng:64}},
+{roll:326, name:"C/khadar Jibriil Muuse", class:"3", sub:{Tar:64,Car:52,Say:30,"C/B":100,FAR:100,SOM:62,XIS:68,Eng:77}},
+{roll:341, name:"Saynab Jaamac Geelle", class:"3", sub:{Tar:80,Car:60,Say:42,"C/B":54,FAR:100,SOM:56,XIS:75,Eng:86}},
+{roll:332, name:"Maxamad Qaasin Aadan", class:"3", sub:{Tar:88,Car:64,Say:51,"C/B":53,FAR:100,SOM:35,XIS:68,Eng:90}},
+{roll:343, name:"Rayaan Ismaciil Maxamed", class:"3", sub:{Tar:76,Car:48,Say:50,"C/B":64,FAR:100,SOM:60,XIS:73,Eng:77}},
+{roll:335, name:"C/weli Maxamad Cismaan", class:"3", sub:{Tar:80,Car:52,Say:43,"C/B":78,FAR:100,SOM:56,XIS:80,Eng:57}},
+{roll:328, name:"Axmad Maxamuud Siciid", class:"3", sub:{Tar:66,Car:36,Say:61,"C/B":79,FAR:100,SOM:76,XIS:63,Eng:58}},
+{roll:313, name:"zaaraa Bashiir Muuse", class:"3", sub:{Tar:56,Car:64,Say:53,"C/B":52,FAR:90,SOM:54,XIS:69,Eng:87}},
+{roll:317, name:"Saynab Maxamad C/lahi", class:"3", sub:{Tar:84,Car:60,Say:44,"C/B":45,FAR:90,SOM:50,XIS:61,Eng:90}},
+{roll:314, name:"Mumtaas Maxamad C/lahi", class:"3", sub:{Tar:68,Car:36,Say:38,"C/B":79,FAR:90,SOM:50,XIS:74,Eng:76}},
+{roll:347, name:"Maryan Maxamed C/laahi", class:"3", sub:{Tar:68,Car:56,Say:67,"C/B":40,FAR:86,SOM:45,XIS:66,Eng:51}},
+{roll:353, name:"C/weli Nuur Aadan", class:"3", sub:{Tar:24,Car:88,Say:39,"C/B":42,FAR:85,SOM:51,XIS:73,Eng:52}},
+{roll:316, name:"Muno Muuse Maax", class:"3", sub:{Tar:56,Car:40,Say:31,"C/B":42,FAR:81,SOM:48,XIS:66,Eng:86}},
+{roll:356, name:"Maxamud Axmed Muumin", class:"3", sub:{Tar:56,Car:52,Say:33,"C/B":42,FAR:70,SOM:45,XIS:72,Eng:62}},
+{roll:302, name:"Sabiriin Axmad Maxamud", class:"3", sub:{Tar:36,Car:72,Say:52,"C/B":50,FAR:68,SOM:20,XIS:74,Eng:51}},
+{roll:352, name:"C/rixmaan Cali Shire", class:"3", sub:{Tar:0,Car:0,Say:0,"C/B":0,FAR:0,SOM:0,XIS:0,Eng:0}},
+
+// ===== FASALKA 4 (AFRAAD) =====
+{roll:404, name:"Ansal Axmad Maxamad", class:"4", sub:{Tar:90,Car:74,Say:100,"C/B":100,FAR:100,SOM:80,XIS:90,Eng:94}},
+{roll:411, name:"Safiyo Maxamad Axmad", class:"4", sub:{Tar:91,Car:86,Say:96,"C/B":100,FAR:100,SOM:84,XIS:69,Eng:94}},
+{roll:425, name:"Khadro Busur ciise", class:"4", sub:{Tar:86,Car:89,Say:100,"C/B":70,FAR:100,SOM:92,XIS:81,Eng:88}},
+{roll:406, name:"Faiso Sicid Yuusuf", class:"4", sub:{Tar:80,Car:83,Say:90,"C/B":77,FAR:100,SOM:86,XIS:96,Eng:90}},
+{roll:421, name:"Maaido Siciid Yuusuf", class:"4", sub:{Tar:73,Car:80,Say:87,"C/B":91,FAR:100,SOM:95,XIS:80,Eng:94}},
+{roll:410, name:"Amiiro C/nasir C/risaq", class:"4", sub:{Tar:71,Car:80,Say:91,"C/B":78,FAR:100,SOM:96,XIS:67,Eng:94}},
+{roll:401, name:"C/raxmaan Siciid C/lahi", class:"4", sub:{Tar:77,Car:65,Say:82,"C/B":91,FAR:100,SOM:80,XIS:81,Eng:88}},
+{roll:418, name:"Sudeysi Geele Maxamad", class:"4", sub:{Tar:58,Car:80,Say:85,"C/B":94,FAR:100,SOM:65,XIS:73,Eng:94}},
+{roll:426, name:"Muno C/qadir Cali", class:"4", sub:{Tar:64,Car:68,Say:82,"C/B":80,FAR:100,SOM:94,XIS:72,Eng:80}},
+{roll:424, name:"Xaawo Yaasiin Muuse", class:"4", sub:{Tar:78,Car:60,Say:100,"C/B":80,FAR:100,SOM:68,XIS:69,Eng:84}},
+{roll:428, name:"C/sahal Maxamad Nuur", class:"4", sub:{Tar:65,Car:71,Say:93,"C/B":77,FAR:100,SOM:84,XIS:84,Eng:64}},
+{roll:407, name:"Jaamac C/risaq Yuusuf", class:"4", sub:{Tar:76,Car:74,Say:86,"C/B":94,FAR:100,SOM:50,XIS:72,Eng:78}},
+{roll:403, name:"Aamino Siciid C/lahi", class:"4", sub:{Tar:80,Car:74,Say:73,"C/B":79,FAR:100,SOM:70,XIS:68,Eng:84}},
+{roll:409, name:"Asma Jaamac Maxamuud", class:"4", sub:{Tar:65,Car:80,Say:78,"C/B":72,FAR:100,SOM:67,XIS:67,Eng:92}},
+{roll:405, name:"Faadumo C/risaq Siciid", class:"4", sub:{Tar:81,Car:71,Say:45,"C/B":83,FAR:100,SOM:90,XIS:65,Eng:86}},
+{roll:402, name:"Maxamuud warsame Maax", class:"4", sub:{Tar:71,Car:80,Say:76,"C/B":91,FAR:100,SOM:52,XIS:67,Eng:82}},
+{roll:413, name:"Nasteexo C/risaq Khalid", class:"4", sub:{Tar:63,Car:56,Say:76,"C/B":80,FAR:100,SOM:94,XIS:73,Eng:68}},
+{roll:427, name:"Mustafe C/qadir Cali", class:"4", sub:{Tar:79,Car:60,Say:82,"C/B":82,FAR:95,SOM:52,XIS:80,Eng:72}},
+{roll:419, name:"Maxamad Najiib C/qaadir", class:"4", sub:{Tar:61,Car:52,Say:75,"C/B":98,FAR:95,SOM:78,XIS:64,Eng:70}},
+{roll:432, name:"C/salaan Maxamed Axmed", class:"4", sub:{Tar:66,Car:56,Say:95,"C/B":64,FAR:90,SOM:72,XIS:82,Eng:66}},
+{roll:431, name:"Mustafe Yaasiin Nuur", class:"4", sub:{Tar:63,Car:53,Say:82,"C/B":73,FAR:98,SOM:66,XIS:72,Eng:80}},
+{roll:429, name:"Liibaan Khaliif Cali", class:"4", sub:{Tar:56,Car:56,Say:82,"C/B":80,FAR:90,SOM:71,XIS:80,Eng:70}},
+{roll:417, name:"Jaamac C/risaq Axmad", class:"4", sub:{Tar:59,Car:80,Say:82,"C/B":78,FAR:95,SOM:50,XIS:68,Eng:70}},
+{roll:422, name:"Maryan Salaad Aadan", class:"4", sub:{Tar:58,Car:56,Say:74,"C/B":82,FAR:90,SOM:66,XIS:72,Eng:78}},
+{roll:416, name:"Maxamuud C/risaq Axmad", class:"4", sub:{Tar:67,Car:56,Say:81,"C/B":88,FAR:87,SOM:51,XIS:76,Eng:66}},
+{roll:408, name:"Adno Maxamuud Cumar", class:"4", sub:{Tar:56,Car:74,Say:73,"C/B":67,FAR:85,SOM:76,XIS:69,Eng:66}},
+{roll:415, name:"C/nasir Abshir C/raxman", class:"4", sub:{Tar:57,Car:53,Say:91,"C/B":83,FAR:81,SOM:60,XIS:67,Eng:68}},
+{roll:412, name:"Faadumo Axmad Cumar", class:"4", sub:{Tar:60,Car:65,Say:72,"C/B":73,FAR:80,SOM:44,XIS:83,Eng:78}},
+{roll:414, name:"Maxamad Maslax Jaamac", class:"4", sub:{Tar:55,Car:68,Say:65,"C/B":61,FAR:80,SOM:74,XIS:74,Eng:64}},
+{roll:423, name:"Isro C/lahi Barre", class:"4", sub:{Tar:65,Car:44,Say:81,"C/B":50,FAR:75,SOM:63,XIS:72,Eng:70}},
+{roll:430, name:"C/casiis Maxamad Baaruuj", class:"4", sub:{Tar:40,Car:68,Say:58,"C/B":57,FAR:70,SOM:55,XIS:75,Eng:44}},
+{roll:420, name:"C/fitaax Maxamuud Khaalid", class:"4", sub:{Tar:29,Car:47,Say:56,"C/B":58,FAR:80,SOM:30,XIS:54,Eng:66}},
+
+// ===== FASALKA 5 (SHANAAD) =====
+{roll:508, name:"Axmed Siciid Cabdi", class:"5", sub:{Tar:92,Car:95,Say:100,"C/B":90,Som:85,Xis:90,Eng:88}},
+{roll:512, name:"Miski Haashin Nuur", class:"5", sub:{Tar:80,Car:80,Say:74,"C/B":100,Som:76,Xis:74,Eng:86}},
+{roll:523, name:"Faaadumo Maxamuud Bashiir", class:"5", sub:{Tar:79,Car:84,Say:92,"C/B":98,Som:45,Xis:75,Eng:82}},
+{roll:503, name:"Suhayb Maxamad Cali", class:"5", sub:{Tar:85,Car:88,Say:92,"C/B":98,Som:48,Xis:65,Eng:78}},
+{roll:517, name:"Maaido Maxamed Abshir", class:"5", sub:{Tar:79,Car:88,Say:70,"C/B":92,Som:70,Xis:69,Eng:80}},
+{roll:522, name:"Naciimo Axmad Warsame", class:"5", sub:{Tar:91,Car:92,Say:92,"C/B":92,Som:36,Xis:74,Eng:58}},
+{roll:507, name:"Maxamed Ayaanle Siciid", class:"5", sub:{Tar:77,Car:82,Say:90,"C/B":100,Som:28,Xis:84,Eng:70}},
+{roll:506, name:"Maxamuud Daahir Muuse", class:"5", sub:{Tar:70,Car:84,Say:80,"C/B":92,Som:40,Xis:83,Eng:80}},
+{roll:519, name:"Maxamad C/nuur Cali", class:"5", sub:{Tar:68,Car:80,Say:86,"C/B":98,Som:48,Xis:73,Eng:70}},
+{roll:515, name:"Maxamed Sahal Maxamed", class:"5", sub:{Tar:64,Car:60,Say:96,"C/B":92,Som:70,Xis:85,Eng:56}},
+{roll:509, name:"C/qani Cabdi Maxamed", class:"5", sub:{Tar:72,Car:88,Say:82,"C/B":100,Som:36,Xis:70,Eng:74}},
+{roll:525, name:"Samiiro C/samad Faarax", class:"5", sub:{Tar:80,Car:92,Say:52,"C/B":86,Som:47,Xis:71,Eng:66}},
+{roll:521, name:"Saynab Maxamuud Khalid", class:"5", sub:{Tar:70,Car:74,Say:70,"C/B":74,Som:62,Xis:58,Eng:74}},
+{roll:516, name:"Liibaan Salaad Aadan", class:"5", sub:{Tar:50,Car:68,Say:76,"C/B":80,Som:68,Xis:68,Eng:70}},
+{roll:524, name:"Ayaan Maxamuud khalid", class:"5", sub:{Tar:57,Car:84,Say:70,"C/B":72,Som:62,Xis:69,Eng:60}},
+{roll:504, name:"Maxamad Nuux Macawiye", class:"5", sub:{Tar:73,Car:64,Say:66,"C/B":78,Som:74,Xis:63,Eng:46}},
+{roll:502, name:"Muxiyadiin Maxamad Sicid", class:"5", sub:{Tar:28,Car:82,Say:60,"C/B":82,Som:72,Xis:69,Eng:67}},
+{roll:518, name:"C/weli C/qadir Cisman", class:"5", sub:{Tar:61,Car:60,Say:73,"C/B":86,Som:48,Xis:66,Eng:62}},
+{roll:505, name:"Yaxye Sharmaarke Ismaciil", class:"5", sub:{Tar:74,Car:60,Say:52,"C/B":72,Som:40,Xis:67,Eng:80}},
+{roll:513, name:"Nasteexo Maxamed Khaalid", class:"5", sub:{Tar:47,Car:84,Say:54,"C/B":68,Som:64,Xis:64,Eng:50}},
+{roll:511, name:"Ayaan Yuusuf Cali", class:"5", sub:{Tar:64,Car:68,Say:52,"C/B":48,Som:66,Xis:70,Eng:60}},
+{roll:520, name:"Maxamad Bashiir C/lahi", class:"5", sub:{Tar:52,Car:44,Say:60,"C/B":82,Som:68,Xis:59,Eng:54}},
+{roll:510, name:"C/qani Maxamed Ibraahim", class:"5", sub:{Tar:64,Car:32,Say:52,"C/B":70,Som:67,Xis:68,Eng:64}},
+{roll:501, name:"Axmad Bashiir Maxamad", class:"5", sub:{Tar:67,Car:53,Say:46,"C/B":72,Som:42,Xis:68,Eng:64}},
+{roll:514, name:"Maxamed Axmed Muumiin", class:"5", sub:{Tar:44,Car:76,Say:44,"C/B":68,Som:42,Xis:68,Eng:56}},
+
+// ===== FASALKA 6 (LIXAAD) =====
+{roll:605, name:"Aamino C/risaq Aaadan", class:"6", sub:{Tar:75,Car:72,Say:100,"C/B":90,Som:89,XIS:90,Eng:88}},
+{roll:615, name:"C/xafiid Baari Cumar", class:"6", sub:{Tar:90,Car:75,Say:92,"C/B":88,Som:88,XIS:84,Eng:84}},
+{roll:626, name:"Ramlo Muqtaar C/samad", class:"6", sub:{Tar:74,Car:73,Say:100,"C/B":92,Som:89,XIS:76,Eng:79}},
+{roll:616, name:"C/weli Axmad Faarax", class:"6", sub:{Tar:72,Car:72,Say:82,"C/B":86,Som:67,XIS:82,Eng:78}},
+{roll:608, name:"C/casiis Ismaaciil Maxamad", class:"6", sub:{Tar:82,Car:76,Say:90,"C/B":80,Som:88,XIS:74,Eng:46}},
+{roll:618, name:"Nashaad Caydiid C/rixmaan", class:"6", sub:{Tar:70,Car:60,Say:90,"C/B":88,Som:74,XIS:81,Eng:66}},
+{roll:603, name:"Bishaaro Faarax Maxamed", class:"6", sub:{Tar:41,Car:70,Say:82,"C/B":83,Som:86,XIS:72,Eng:65}},
+{roll:619, name:"Hibaaq Maxamad Cali", class:"6", sub:{Tar:71,Car:60,Say:86,"C/B":74,Som:76,XIS:64,Eng:62}},
+{roll:623, name:"Ikhlaas Jimcaale Yuusuf", class:"6", sub:{Tar:64,Car:56,Say:92,"C/B":54,Som:90,XIS:74,Eng:60}},
+{roll:621, name:"Zakeriye Ayanle Cisman", class:"6", sub:{Tar:76,Car:60,Say:100,"C/B":78,Som:68,XIS:68,Eng:36}},
+{roll:622, name:"C/risaq Jibriil Muuse", class:"6", sub:{Tar:49,Car:60,Say:88,"C/B":76,Som:69,XIS:65,Eng:64}},
+{roll:611, name:"Maxamad C/risaq Axmad", class:"6", sub:{Tar:88,Car:63,Say:90,"C/B":44,Som:68,XIS:70,Eng:42}},
+{roll:606, name:"Faadumo Siciid Cumar", class:"6", sub:{Tar:42,Car:57,Say:80,"C/B":72,Som:72,XIS:64,Eng:65}},
+{roll:620, name:"Maxamad Cabdi Nuur", class:"6", sub:{Tar:44,Car:60,Say:84,"C/B":64,Som:64,XIS:71,Eng:54}},
+{roll:610, name:"Jaamac Cabdi Hiirad", class:"6", sub:{Tar:46,Car:72,Say:82,"C/B":62,Som:57,XIS:69,Eng:52}},
+{roll:604, name:"Fatxi Yuusuf Cali", class:"6", sub:{Tar:62,Car:60,Say:44,"C/B":74,Som:72,XIS:68,Eng:56}},
+{roll:601, name:"Xamse Siciid Saalax", class:"6", sub:{Tar:39,Car:52,Say:74,"C/B":52,Som:70,XIS:67,Eng:75}},
+{roll:607, name:"Casaro Muumin Ciise", class:"6", sub:{Tar:63,Car:42,Say:60,"C/B":62,Som:65,XIS:73,Eng:62}},
+{roll:617, name:"C/weli C/qadir Yuusuf", class:"6", sub:{Tar:54,Car:42,Say:78,"C/B":68,Som:61,XIS:62,Eng:52}},
+{roll:614, name:"Maxamuud Axmad Maxamuud", class:"6", sub:{Tar:52,Car:64,Say:66,"C/B":62,Som:54,XIS:68,Eng:50}},
+{roll:609, name:"Cismaan Jaamac Maxamud", class:"6", sub:{Tar:30,Car:52,Say:72,"C/B":78,Som:67,XIS:67,Eng:42}},
+{roll:612, name:"Axmad Cali Maxamad", class:"6", sub:{Tar:58,Car:60,Say:48,"C/B":38,Som:71,XIS:66,Eng:56}},
+{roll:613, name:"C/lahi Siciid Maxamuud", class:"6", sub:{Tar:0,Car:0,Say:0,"C/B":0,Som:0,XIS:0,Eng:0}},
+{roll:602, name:"Maxamad Axmad C/risaq", class:"6", sub:{Tar:0,Car:0,Say:0,"C/B":0,Som:0,XIS:0,Eng:0}},
+
+// ===== FASALKA 7 (TODOBAAAD) =====
+{roll:713, name:"Siciid Maxamad Nuur", class:"7", sub:{Isl:90,Arab:97,Som:90,Xis:92,Say:100,"C/B":100,Eng:82,ICT:89}},
+{roll:719, name:"Mumtaaz Cabdi Faarax", class:"7", sub:{Isl:90,Arab:89,Som:85,Xis:66,Say:90,"C/B":92,Eng:100,ICT:97}},
+{roll:725, name:"Isro Maxamad Axmad", class:"7", sub:{Isl:90,Arab:68,Som:96,Xis:76,Say:100,"C/B":86,Eng:98,ICT:94}},
+{roll:723, name:"Faadumo Maxamad Axmad", class:"7", sub:{Isl:63,Arab:86,Som:76,Xis:80,Say:84,"C/B":100,Eng:98,ICT:95}},
+{roll:738, name:"Anfac Jaamac Maxamuud", class:"7", sub:{Isl:63,Arab:86,Som:93,Xis:72,Say:100,"C/B":68,Eng:94,ICT:91}},
+{roll:733, name:"Farxiyo Cumar Yusuf", class:"7", sub:{Isl:87,Arab:80,Som:87,Xis:78,Say:90,"C/B":92,Eng:72,ICT:78}},
+{roll:706, name:"Siciid Maxamuud Maxamad", class:"7", sub:{Isl:69,Arab:86,Som:70,Xis:94,Say:76,"C/B":80,Eng:98,ICT:86}},
+{roll:715, name:"Maxamad C/risaq Khaliif", class:"7", sub:{Isl:81,Arab:83,Som:74,Xis:71,Say:100,"C/B":92,Eng:67,ICT:87}},
+{roll:720, name:"Fahmo Cabdi Maxamad", class:"7", sub:{Isl:75,Arab:68,Som:75,Xis:78,Say:76,"C/B":88,Eng:96,ICT:85}},
+{roll:708, name:"C/qadir Guure Yuusuf", class:"7", sub:{Isl:82,Arab:68,Som:68,Xis:74,Say:88,"C/B":84,Eng:80,ICT:84}},
+{roll:724, name:"Aasiyo Maxamd Axmad", class:"7", sub:{Isl:79,Arab:89,Som:76,Xis:73,Say:90,"C/B":80,Eng:64,ICT:68}},
+{roll:737, name:"Khadro Muqtar C/samad", class:"7", sub:{Isl:67,Arab:89,Som:67,Xis:84,Say:76,"C/B":64,Eng:71,ICT:77}},
+{roll:711, name:"Maxamad Axmad Jaamac", class:"7", sub:{Isl:63,Arab:83,Som:64,Xis:84,Say:74,"C/B":76,Eng:68,ICT:71}},
+{roll:709, name:"Yacquub Maxamud Sicid", class:"7", sub:{Isl:52,Arab:80,Som:64,Xis:68,Say:100,"C/B":68,Eng:63,ICT:68}},
+{roll:729, name:"Ruweydo Yasiin Maxamed", class:"7", sub:{Isl:65,Arab:65,Som:71,Xis:69,Say:86,"C/B":72,Eng:79,ICT:63}},
+{roll:722, name:"Aamino Abshir C/lahi", class:"7", sub:{Isl:53,Arab:86,Som:70,Xis:74,Say:56,"C/B":76,Eng:73,ICT:65}},
+{roll:718, name:"Salmo Bashiir C/lahi", class:"7", sub:{Isl:57,Arab:50,Som:73,Xis:67,Say:76,"C/B":68,Eng:86,ICT:66}},
+{roll:735, name:"C/xafiid Cali Cabdi", class:"7", sub:{Isl:54,Arab:83,Som:70,Xis:67,Say:74,"C/B":76,Eng:49,ICT:68}},
+{roll:726, name:"Adno Maxamad Ibrahim", class:"7", sub:{Isl:68,Arab:83,Som:71,Xis:80,Say:82,"C/B":68,Eng:32,ICT:55}},
+{roll:704, name:"Filsan Siciid Maxamad", class:"7", sub:{Isl:60,Arab:68,Som:44,Xis:75,Say:70,"C/B":68,Eng:86,ICT:64}},
+{roll:721, name:"Maymuun Maxamad Abshir", class:"7", sub:{Isl:51,Arab:83,Som:50,Xis:81,Say:74,"C/B":70,Eng:45,ICT:75}},
+{roll:702, name:"Axmad C/risaq Muuse", class:"7", sub:{Isl:50,Arab:56,Som:76,Xis:72,Say:60,"C/B":68,Eng:72,ICT:63}},
+{roll:705, name:"Muuse C/risaq Muuse", class:"7", sub:{Isl:57,Arab:62,Som:50,Xis:82,Say:82,"C/B":56,Eng:43,ICT:58}},
+{roll:714, name:"Maxamuud Siciid Khaliif", class:"7", sub:{Isl:44,Arab:74,Som:45,Xis:73,Say:76,"C/B":48,Eng:61,ICT:64}},
+{roll:731, name:"Fartuun Maxamed Cali", class:"7", sub:{Isl:44,Arab:86,Som:67,Xis:70,Say:52,"C/B":68,Eng:45,ICT:52}},
+{roll:716, name:"Fowsiyo Siciid Axmad", class:"7", sub:{Isl:50,Arab:68,Som:63,Xis:69,Say:50,"C/B":72,Eng:52,ICT:59}},
+{roll:734, name:"Mascuud Warsame Maax", class:"7", sub:{Isl:53,Arab:60,Som:46,Xis:63,Say:72,"C/B":72,Eng:55,ICT:45}},
+{roll:703, name:"Axmad Maxamad Maxamuud", class:"7", sub:{Isl:46,Arab:68,Som:49,Xis:75,Say:78,"C/B":56,Eng:32,ICT:58}},
+{roll:710, name:"Saleebaan Cabdi Maxamuud", class:"7", sub:{Isl:62,Arab:83,Som:0,Xis:70,Say:64,"C/B":80,Eng:47,ICT:52}},
+{roll:728, name:"C/khadar Yaasiin Siciid", class:"7", sub:{Isl:35,Arab:62,Som:49,Xis:68,Say:60,"C/B":60,Eng:45,ICT:63}},
+{roll:707, name:"Maslax Jaamac Maxamed", class:"7", sub:{Isl:35,Arab:68,Som:45,Xis:58,Say:58,"C/B":72,Eng:52,ICT:51}},
+{roll:701, name:"Axmad Siciid Khaliif", class:"7", sub:{Isl:65,Arab:62,Som:57,Xis:0,Say:64,"C/B":72,Eng:49,ICT:56}},
+{roll:717, name:"Maymuun Maxamad C/lahi", class:"7", sub:{Isl:40,Arab:59,Som:40,Xis:61,Say:52,"C/B":44,Eng:52,ICT:56}},
+{roll:712, name:"C/raxman Maxamuud Xasan", class:"7", sub:{Isl:68,Arab:41,Som:50,Xis:67,Say:58,"C/B":68,Eng:33,ICT:57}},
+{roll:730, name:"Salaad C/risaaq Axmed", class:"7", sub:{Isl:32,Arab:41,Som:30,Xis:60,Say:76,"C/B":60,Eng:28,ICT:50}},
+{roll:736, name:"Yaxye C/risaaq Maxamad", class:"7", sub:{Isl:26,Arab:40,Som:40,Xis:54,Say:50,"C/B":38,Eng:28,ICT:51}}
+];
+
+// ============================================================
+// FUNCSHOONO - WAXAA HALKAN KA BILAABANAYA QAYBTA SHAQAYSA
+// ============================================================
+
+function getGrade(avg) {
+    if (avg >= 91) return "A+";
+    if (avg >= 86) return "A";
+    if (avg >= 81) return "A-";
+    if (avg >= 76) return "B+";
+    if (avg >= 71) return "B";
+    if (avg >= 66) return "B-";
+    if (avg >= 61) return "C+";
+    if (avg >= 56) return "C";
+    if (avg >= 50) return "C-";
+    if (avg >= 41) return "D";
+    return "F";
+}
+
+function searchStudent() {
+    const input = document.getElementById('rollInput');
+    const roll = parseInt(input.value.trim());
+    const msg = document.getElementById('msg');
+    const card = document.getElementById('card');
+
+    // Qarso kaarka bilowga
+    msg.className = 'msg';
+    msg.style.display = 'none';
+    card.classList.remove('show');
+
+    // Hubi inuu yahay lambar
+    if (isNaN(roll)) {
+        msg.textContent = '❌ Fadlan geli lambar sax ah (tusaale: 713)';
+        msg.className = 'msg error';
+        msg.style.display = 'block';
+        return;
+    }
+
+    // Raadi ardayga
+    const student = students.find(s => s.roll === roll);
+
+    if (!student) {
+        msg.textContent = '❌ Lamaan helin arday leh Roll No: ' + roll;
+        msg.className = 'msg error';
+        msg.style.display = 'block';
+        return;
+    }
+
+    // Xisaabi natiijada
+    const subs = student.sub;
+    const scores = Object.values(subs);
+    const total = scores.reduce((a, b) => a + b, 0);
+    const count = scores.length;
+    const avg = total / count;
+    const passed = avg >= 50;
+    const grade = passed ? 'GUDBAY' : 'DHACAY';
+    const level = getGrade(avg);
+
+    // Buuxi kaarka
+    document.getElementById('sName').textContent = student.name;
+    document.getElementById('sRoll').textContent = student.roll;
+    document.getElementById('sClass').textContent = 'Fasalka: ' + student.class;
+    document.getElementById('total').textContent = total;
+    document.getElementById('avg').textContent = avg.toFixed(2);
+    document.getElementById('count').textContent = count;
+    document.getElementById('levelDisplay').textContent = level;
+
+    const gradeEl = document.getElementById('gradeDisplay');
+    gradeEl.textContent = grade;
+    gradeEl.className = 'grade' + (passed ? '' : ' fail');
+
+    // Buuxi miisaanka maaddooyinka
+    const tbody = document.getElementById('subjectsBody');
+    tbody.innerHTML = '';
+    for (const [name, score] of Object.entries(subs)) {
+        const tr = document.createElement('tr');
+        const passClass = score >= 50 ? 'pass' : 'fail';
+        tr.innerHTML = `
+            <td class="subject">${name}</td>
+            <td style="text-align:right;">
+                <span class="score ${passClass}">${score}</span>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    }
+
+    // Muuji kaarka
+    msg.textContent = '✅ Natiijada loogu talagalay ' + student.name + ' waa la helay!';
+    msg.className = 'msg success';
+    msg.style.display = 'block';
+    card.classList.add('show');
+}
+
+// ============================================================
+// DHACDOOYINKA (EVENTS)
+// ============================================================
+
+document.getElementById('searchBtn').addEventListener('click', searchStudent);
+
+document.getElementById('rollInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        searchStudent();
+    }
+});
+
+// Marka bogga la furo, diiradda saar sanduuqa raadinta
+window.addEventListener('load', function() {
+    document.getElementById('rollInput').focus();
+});
+</script>
+
+</body>
+</html>
