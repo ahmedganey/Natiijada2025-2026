@@ -250,94 +250,101 @@
 
 <script>
 // ============================================================
-// XOGTA ARDAYDA - DHAMAAN FASALADA (1,2,3)
+// XOGTA ARDAYDA - DHAMAAN FASALADA (1,2,3) 
+// WAXAA LAGA BADELIYAY SI AY U SHAQEYAAN
 // ============================================================
 
 const students = [
 
 // ===== FORM THREE (FASALKA 3) - 22 ARDAY =====
-{roll:1101, name:"C/lahi Maxamad Hiirad", class:"Form Three", sub:{Geo:98, Isl:89, Arab:85, Eng:65, His:75, Bio:80, Chem:84, Som:94, Maths:50, Phy:78, ICT:83}},
-{roll:1117, name:"Ayaan Axmad Maxamad", class:"Form Three", sub:{Geo:90, Isl:82, Arab:75, Eng:59, His:59, Bio:70, Chem:70, Som:80, Maths:63, Phy:75, ICT:74}},
-{roll:1116, name:"Maxamuud maxamad Cali", class:"Form Three", sub:{Geo:70, Isl:81, Arab:80, Eng:61, His:63, Bio:62, Chem:66, Som:91, Maths:71, Phy:71, ICT:81}},
-{roll:1106, name:"Saleebaan C/risaq Muuse", class:"Form Three", sub:{Geo:68, Isl:67, Arab:84, Eng:67, His:69, Bio:86, Chem:69, Som:80, Maths:44, Phy:59, ICT:80}},
-{roll:1119, name:"Nasteexo C/risaq Khalif", class:"Form Three", sub:{Geo:77, Isl:75, Arab:70, Eng:46, His:69, Bio:92, Chem:69, Som:55, Maths:64, Phy:62, ICT:70}},
-{roll:1121, name:"Bushro Barre Cismaan", class:"Form Three", sub:{Geo:65, Isl:68, Arab:63, Eng:35, His:72, Bio:90, Chem:81, Som:55, Maths:66, Phy:69, ICT:75}},
-{roll:1120, name:"Mustalifo C/risaq C/raxman", class:"Form Three", sub:{Geo:62, Isl:65, Arab:63, Eng:46, His:69, Bio:80, Chem:60, Som:60, Maths:64, Phy:68, ICT:75}},
-{roll:1114, name:"Ibrahim C/lahi Siciid", class:"Form Three", sub:{Geo:54, Isl:80, Arab:77, Eng:41, His:61, Bio:66, Chem:60, Som:68, Maths:44, Phy:43, ICT:75}},
-{roll:1102, name:"Maxamad C/qadir Cali", class:"Form Three", sub:{Geo:58, Isl:78, Arab:75, Eng:31, His:71, Bio:59, Chem:60, Som:67, Maths:50, Phy:46, ICT:71}},
-{roll:1111, name:"Axmad Jaamac Maxamuud", class:"Form Three", sub:{Geo:64, Isl:74, Arab:68, Eng:45, His:52, Bio:71, Chem:69, Som:70, Maths:42, Phy:42, ICT:65}},
-{roll:1104, name:"Maxamad Yuusuf Cali", class:"Form Three", sub:{Geo:40, Isl:70, Arab:67, Eng:40, His:53, Bio:59, Chem:66, Som:66, Maths:49, Phy:42, ICT:72}},
-{roll:1109, name:"Siciid Maxamad Khalid", class:"Form Three", sub:{Geo:68, Isl:77, Arab:61, Eng:34, His:51, Bio:60, Chem:50, Som:58, Maths:42, Phy:30, ICT:71}},
-{roll:1108, name:"C/lahi Siciid Cumar", class:"Form Three", sub:{Geo:54, Isl:67, Arab:57, Eng:47, His:50, Bio:71, Chem:69, Som:57, Maths:34, Phy:23, ICT:70}},
-{roll:1112, name:"Ciise Mahad Ciise", class:"Form Three", sub:{Geo:64, Isl:70, Arab:44, Eng:57, His:67, Bio:38, Chem:48, Som:54, Maths:40, Phy:45, ICT:53}},
-{roll:1105, name:"Maxamud Ibraahim Axmad", class:"Form Three", sub:{Geo:56, Isl:67, Arab:62, Eng:28, His:66, Bio:50, Chem:42, Som:55, Maths:42, Phy:48, ICT:62}},
-{roll:1113, name:"Maxamuud Nuur Maxamud", class:"Form Three", sub:{Geo:64, Isl:66, Arab:56, Eng:45, His:55, Bio:35, Chem:58, Som:57, Maths:37, Phy:39, ICT:56}},
-{roll:1110, name:"Siciid C/risaq Muuse", class:"Form Three", sub:{Geo:62, Isl:55, Arab:66, Eng:37, His:51, Bio:57, Chem:55, Som:61, Maths:42, Phy:31, ICT:50}},
-{roll:1115, name:"C/raxman Cali Cabdi", class:"Form Three", sub:{Geo:54, Isl:70, Arab:60, Eng:43, His:54, Bio:44, Chem:55, Som:71, Maths:32, Phy:30, ICT:52}},
-{roll:1103, name:"Yacquub Maxamad C/lahi", class:"Form Three", sub:{Geo:68, Isl:61, Arab:44, Eng:45, His:45, Bio:44, Chem:57, Som:53, Maths:36, Phy:31, ICT:72}},
-{roll:1107, name:"Maxamad Maxamud Khalid", class:"Form Three", sub:{Geo:60, Isl:54, Arab:53, Eng:41, His:52, Bio:48, Chem:54, Som:64, Maths:32, Phy:34, ICT:61}},
-{roll:1123, name:"Maxamad Siciid Saalax", class:"Form Three", sub:{Geo:62, Isl:44, Arab:48, Eng:49, His:53, Bio:51, Chem:54, Som:66, Maths:34, Phy:31, ICT:60}},
-{roll:1118, name:"Faiso Maxamad C/lahi", class:"Form Three", sub:{Geo:59, Isl:50, Arab:50, Eng:49, His:59, Bio:58, Chem:60, Som:56, Maths:33, Phy:30, ICT:47}},
+{roll:"1101", name:"C/lahi Maxamad Hiirad", class:"Form Three", sub:{Geo:98, Isl:89, Arab:85, Eng:65, His:75, Bio:80, Chem:84, Som:94, Maths:50, Phy:78, ICT:83}},
+{roll:"1117", name:"Ayaan Axmad Maxamad", class:"Form Three", sub:{Geo:90, Isl:82, Arab:75, Eng:59, His:59, Bio:70, Chem:70, Som:80, Maths:63, Phy:75, ICT:74}},
+{roll:"1116", name:"Maxamuud maxamad Cali", class:"Form Three", sub:{Geo:70, Isl:81, Arab:80, Eng:61, His:63, Bio:62, Chem:66, Som:91, Maths:71, Phy:71, ICT:81}},
+{roll:"1106", name:"Saleebaan C/risaq Muuse", class:"Form Three", sub:{Geo:68, Isl:67, Arab:84, Eng:67, His:69, Bio:86, Chem:69, Som:80, Maths:44, Phy:59, ICT:80}},
+{roll:"1119", name:"Nasteexo C/risaq Khalif", class:"Form Three", sub:{Geo:77, Isl:75, Arab:70, Eng:46, His:69, Bio:92, Chem:69, Som:55, Maths:64, Phy:62, ICT:70}},
+{roll:"1121", name:"Bushro Barre Cismaan", class:"Form Three", sub:{Geo:65, Isl:68, Arab:63, Eng:35, His:72, Bio:90, Chem:81, Som:55, Maths:66, Phy:69, ICT:75}},
+{roll:"1120", name:"Mustalifo C/risaq C/raxman", class:"Form Three", sub:{Geo:62, Isl:65, Arab:63, Eng:46, His:69, Bio:80, Chem:60, Som:60, Maths:64, Phy:68, ICT:75}},
+{roll:"1114", name:"Ibrahim C/lahi Siciid", class:"Form Three", sub:{Geo:54, Isl:80, Arab:77, Eng:41, His:61, Bio:66, Chem:60, Som:68, Maths:44, Phy:43, ICT:75}},
+{roll:"1102", name:"Maxamad C/qadir Cali", class:"Form Three", sub:{Geo:58, Isl:78, Arab:75, Eng:31, His:71, Bio:59, Chem:60, Som:67, Maths:50, Phy:46, ICT:71}},
+{roll:"1111", name:"Axmad Jaamac Maxamuud", class:"Form Three", sub:{Geo:64, Isl:74, Arab:68, Eng:45, His:52, Bio:71, Chem:69, Som:70, Maths:42, Phy:42, ICT:65}},
+{roll:"1104", name:"Maxamad Yuusuf Cali", class:"Form Three", sub:{Geo:40, Isl:70, Arab:67, Eng:40, His:53, Bio:59, Chem:66, Som:66, Maths:49, Phy:42, ICT:72}},
+{roll:"1109", name:"Siciid Maxamad Khalid", class:"Form Three", sub:{Geo:68, Isl:77, Arab:61, Eng:34, His:51, Bio:60, Chem:50, Som:58, Maths:42, Phy:30, ICT:71}},
+{roll:"1108", name:"C/lahi Siciid Cumar", class:"Form Three", sub:{Geo:54, Isl:67, Arab:57, Eng:47, His:50, Bio:71, Chem:69, Som:57, Maths:34, Phy:23, ICT:70}},
+{roll:"1112", name:"Ciise Mahad Ciise", class:"Form Three", sub:{Geo:64, Isl:70, Arab:44, Eng:57, His:67, Bio:38, Chem:48, Som:54, Maths:40, Phy:45, ICT:53}},
+{roll:"1105", name:"Maxamud Ibraahim Axmad", class:"Form Three", sub:{Geo:56, Isl:67, Arab:62, Eng:28, His:66, Bio:50, Chem:42, Som:55, Maths:42, Phy:48, ICT:62}},
+{roll:"1113", name:"Maxamuud Nuur Maxamud", class:"Form Three", sub:{Geo:64, Isl:66, Arab:56, Eng:45, His:55, Bio:35, Chem:58, Som:57, Maths:37, Phy:39, ICT:56}},
+{roll:"1110", name:"Siciid C/risaq Muuse", class:"Form Three", sub:{Geo:62, Isl:55, Arab:66, Eng:37, His:51, Bio:57, Chem:55, Som:61, Maths:42, Phy:31, ICT:50}},
+{roll:"1115", name:"C/raxman Cali Cabdi", class:"Form Three", sub:{Geo:54, Isl:70, Arab:60, Eng:43, His:54, Bio:44, Chem:55, Som:71, Maths:32, Phy:30, ICT:52}},
+{roll:"1103", name:"Yacquub Maxamad C/lahi", class:"Form Three", sub:{Geo:68, Isl:61, Arab:44, Eng:45, His:45, Bio:44, Chem:57, Som:53, Maths:36, Phy:31, ICT:72}},
+{roll:"1107", name:"Maxamad Maxamud Khalid", class:"Form Three", sub:{Geo:60, Isl:54, Arab:53, Eng:41, His:52, Bio:48, Chem:54, Som:64, Maths:32, Phy:34, ICT:61}},
+{roll:"1123", name:"Maxamad Siciid Saalax", class:"Form Three", sub:{Geo:62, Isl:44, Arab:48, Eng:49, His:53, Bio:51, Chem:54, Som:66, Maths:34, Phy:31, ICT:60}},
+{roll:"1118", name:"Faiso Maxamad C/lahi", class:"Form Three", sub:{Geo:59, Isl:50, Arab:50, Eng:49, His:59, Bio:58, Chem:60, Som:56, Maths:33, Phy:30, ICT:47}},
 
 // ===== FORM TWO (FASALKA 2) - 28 ARDAY =====
-{roll:1008, name:"Ayman Siciid Samatar", class:"Form Two", sub:{Geo:86, Isl:94, Arab:67, Eng:78, His:71, Bio:90, Chem:93, Som:92, Maths:79, Phy:76, ICT:89}},
-{roll:1001, name:"C/salaan Maxamad Siyaad", class:"Form Two", sub:{Geo:89, Isl:96, Arab:72, Eng:57, His:83, Bio:92, Chem:72, Som:90, Maths:82, Phy:72, ICT:79}},
-{roll:1002, name:"C/lahi C/risaq Cali", class:"Form Two", sub:{Geo:87, Isl:93, Arab:69, Eng:51, His:64, Bio:80, Chem:51, Som:80, Maths:67, Phy:80, ICT:83}},
-{roll:1019, name:"Saynab Qaasim C/raxman", class:"Form Two", sub:{Geo:72, Isl:80, Arab:64, Eng:63, His:64, Bio:74, Chem:66, Som:92, Maths:63, Phy:64, ICT:82}},
-{roll:1021, name:"C/lahi Maxamad Ismaaciil", class:"Form Two", sub:{Geo:64, Isl:92, Arab:65, Eng:49, His:75, Bio:50, Chem:89, Som:54, Maths:81, Phy:73, ICT:85}},
-{roll:1023, name:"Nasro Maxamud Yaxye", class:"Form Two", sub:{Geo:78, Isl:89, Arab:55, Eng:61, His:42, Bio:86, Chem:69, Som:75, Maths:78, Phy:54, ICT:84}},
-{roll:1014, name:"Nasiib Muuse Maxamuud", class:"Form Two", sub:{Geo:68, Isl:81, Arab:72, Eng:55, His:65, Bio:68, Chem:66, Som:100, Maths:49, Phy:50, ICT:80}},
-{roll:1004, name:"Axmad C/Nasir Yuusuf", class:"Form Two", sub:{Geo:62, Isl:74, Arab:66, Eng:59, His:57, Bio:83, Chem:67, Som:82, Maths:70, Phy:52, ICT:75}},
-{roll:1028, name:"C/casiis Siciid Khaliif", class:"Form Two", sub:{Geo:58, Isl:93, Arab:80, Eng:65, His:44, Bio:86, Chem:57, Som:98, Maths:50, Phy:24, ICT:72}},
-{roll:1017, name:"C/mudalib Ducaale Cali", class:"Form Two", sub:{Geo:50, Isl:82, Arab:67, Eng:66, His:51, Bio:86, Chem:60, Som:74, Maths:54, Phy:50, ICT:79}},
-{roll:1018, name:"Caasho Bashiir Muuse", class:"Form Two", sub:{Geo:58, Isl:84, Arab:61, Eng:59, His:50, Bio:68, Chem:54, Som:70, Maths:52, Phy:41, ICT:69}},
-{roll:1026, name:"C/nasir Maxamad Cali", class:"Form Two", sub:{Geo:66, Isl:47, Arab:52, Eng:47, His:55, Bio:62, Chem:45, Som:82, Maths:72, Phy:32, ICT:76}},
-{roll:1011, name:"Kowasar C/risaq C/raxman", class:"Form Two", sub:{Geo:52, Isl:66, Arab:52, Eng:61, His:46, Bio:73, Chem:54, Som:74, Maths:35, Phy:31, ICT:73}},
-{roll:1009, name:"Khadro C/risaq C/raxaman", class:"Form Two", sub:{Geo:56, Isl:53, Arab:53, Eng:37, His:43, Bio:77, Chem:54, Som:68, Maths:39, Phy:42, ICT:76}},
-{roll:1006, name:"Faaiso Cabdi Maxamuud", class:"Form Two", sub:{Geo:50, Isl:41, Arab:60, Eng:57, His:41, Bio:64, Chem:40, Som:88, Maths:42, Phy:33, ICT:73}},
-{roll:1007, name:"Kowsar Maxamud Khalid", class:"Form Two", sub:{Geo:60, Isl:83, Arab:79, Eng:41, His:29, Bio:50, Chem:36, Som:84, Maths:39, Phy:34, ICT:49}},
-{roll:1016, name:"Maxamad Yaasiin Nuur", class:"Form Two", sub:{Geo:70, Isl:39, Arab:65, Eng:57, His:50, Bio:52, Chem:45, Som:80, Maths:35, Phy:30, ICT:59}},
-{roll:1003, name:"C/risaq Ayaanle Cisman", class:"Form Two", sub:{Geo:46, Isl:71, Arab:86, Eng:45, His:41, Bio:56, Chem:48, Som:60, Maths:47, Phy:24, ICT:55}},
-{roll:1027, name:"C/qadir Ayanle Siciid", class:"Form Two", sub:{Geo:64, Isl:65, Arab:66, Eng:55, His:35, Bio:38, Chem:25, Som:70, Maths:54, Phy:33, ICT:70}},
-{roll:1005, name:"Mawliid Siciid Axmad", class:"Form Two", sub:{Geo:42, Isl:50, Arab:62, Eng:57, His:45, Bio:53, Chem:51, Som:65, Maths:55, Phy:22, ICT:69}},
-{roll:1024, name:"Axmad Muxiyadiin Axmad", class:"Form Two", sub:{Geo:52, Isl:59, Arab:61, Eng:39, His:51, Bio:50, Chem:58, Som:60, Maths:46, Phy:27, ICT:63}},
-{roll:1013, name:"Maxamad Mukhtaar C/samad", class:"Form Two", sub:{Geo:52, Isl:67, Arab:70, Eng:67, His:47, Bio:41, Chem:40, Som:64, Maths:24, Phy:31, ICT:59}},
-{roll:1010, name:"Xaliimo Maxamuud Xasan", class:"Form Two", sub:{Geo:70, Isl:53, Arab:52, Eng:44, His:47, Bio:38, Chem:48, Som:75, Maths:45, Phy:23, ICT:67}},
-{roll:1022, name:"C/lahi Khaliif C/raxman", class:"Form Two", sub:{Geo:52, Isl:49, Arab:54, Eng:59, His:39, Bio:46, Chem:65, Som:84, Maths:39, Phy:29, ICT:43}},
-{roll:1015, name:"Nasrudiin Haashin Nuur", class:"Form Two", sub:{Geo:62, Isl:45, Arab:51, Eng:57, His:51, Bio:40, Chem:30, Som:68, Maths:54, Phy:32, ICT:67}},
-{roll:1025, name:"C/xakiin Maxamad Cali", class:"Form Two", sub:{Geo:66, Isl:52, Arab:67, Eng:49, His:38, Bio:44, Chem:55, Som:66, Maths:51, Phy:18, ICT:50}},
-{roll:1020, name:"C/raxman Jibriil Muuse", class:"Form Two", sub:{Geo:56, Isl:56, Arab:50, Eng:53, His:48, Bio:57, Chem:56, Som:50, Maths:61, Phy:27, ICT:40}},
-{roll:1012, name:"Maxamuud Caynaanshe Khaalid", class:"Form Two", sub:{Geo:62, Isl:65, Arab:46, Eng:27, His:31, Bio:52, Chem:65, Som:75, Maths:51, Phy:34, ICT:45}},
+{roll:"1008", name:"Ayman Siciid Samatar", class:"Form Two", sub:{Geo:86, Isl:94, Arab:67, Eng:78, His:71, Bio:90, Chem:93, Som:92, Maths:79, Phy:76, ICT:89}},
+{roll:"1001", name:"C/salaan Maxamad Siyaad", class:"Form Two", sub:{Geo:89, Isl:96, Arab:72, Eng:57, His:83, Bio:92, Chem:72, Som:90, Maths:82, Phy:72, ICT:79}},
+{roll:"1002", name:"C/lahi C/risaq Cali", class:"Form Two", sub:{Geo:87, Isl:93, Arab:69, Eng:51, His:64, Bio:80, Chem:51, Som:80, Maths:67, Phy:80, ICT:83}},
+{roll:"1019", name:"Saynab Qaasim C/raxman", class:"Form Two", sub:{Geo:72, Isl:80, Arab:64, Eng:63, His:64, Bio:74, Chem:66, Som:92, Maths:63, Phy:64, ICT:82}},
+{roll:"1021", name:"C/lahi Maxamad Ismaaciil", class:"Form Two", sub:{Geo:64, Isl:92, Arab:65, Eng:49, His:75, Bio:50, Chem:89, Som:54, Maths:81, Phy:73, ICT:85}},
+{roll:"1023", name:"Nasro Maxamud Yaxye", class:"Form Two", sub:{Geo:78, Isl:89, Arab:55, Eng:61, His:42, Bio:86, Chem:69, Som:75, Maths:78, Phy:54, ICT:84}},
+{roll:"1014", name:"Nasiib Muuse Maxamuud", class:"Form Two", sub:{Geo:68, Isl:81, Arab:72, Eng:55, His:65, Bio:68, Chem:66, Som:100, Maths:49, Phy:50, ICT:80}},
+{roll:"1004", name:"Axmad C/Nasir Yuusuf", class:"Form Two", sub:{Geo:62, Isl:74, Arab:66, Eng:59, His:57, Bio:83, Chem:67, Som:82, Maths:70, Phy:52, ICT:75}},
+{roll:"1028", name:"C/casiis Siciid Khaliif", class:"Form Two", sub:{Geo:58, Isl:93, Arab:80, Eng:65, His:44, Bio:86, Chem:57, Som:98, Maths:50, Phy:24, ICT:72}},
+{roll:"1017", name:"C/mudalib Ducaale Cali", class:"Form Two", sub:{Geo:50, Isl:82, Arab:67, Eng:66, His:51, Bio:86, Chem:60, Som:74, Maths:54, Phy:50, ICT:79}},
+{roll:"1018", name:"Caasho Bashiir Muuse", class:"Form Two", sub:{Geo:58, Isl:84, Arab:61, Eng:59, His:50, Bio:68, Chem:54, Som:70, Maths:52, Phy:41, ICT:69}},
+{roll:"1026", name:"C/nasir Maxamad Cali", class:"Form Two", sub:{Geo:66, Isl:47, Arab:52, Eng:47, His:55, Bio:62, Chem:45, Som:82, Maths:72, Phy:32, ICT:76}},
+{roll:"1011", name:"Kowasar C/risaq C/raxman", class:"Form Two", sub:{Geo:52, Isl:66, Arab:52, Eng:61, His:46, Bio:73, Chem:54, Som:74, Maths:35, Phy:31, ICT:73}},
+{roll:"1009", name:"Khadro C/risaq C/raxaman", class:"Form Two", sub:{Geo:56, Isl:53, Arab:53, Eng:37, His:43, Bio:77, Chem:54, Som:68, Maths:39, Phy:42, ICT:76}},
+{roll:"1006", name:"Faaiso Cabdi Maxamuud", class:"Form Two", sub:{Geo:50, Isl:41, Arab:60, Eng:57, His:41, Bio:64, Chem:40, Som:88, Maths:42, Phy:33, ICT:73}},
+{roll:"1007", name:"Kowsar Maxamud Khalid", class:"Form Two", sub:{Geo:60, Isl:83, Arab:79, Eng:41, His:29, Bio:50, Chem:36, Som:84, Maths:39, Phy:34, ICT:49}},
+{roll:"1016", name:"Maxamad Yaasiin Nuur", class:"Form Two", sub:{Geo:70, Isl:39, Arab:65, Eng:57, His:50, Bio:52, Chem:45, Som:80, Maths:35, Phy:30, ICT:59}},
+{roll:"1003", name:"C/risaq Ayaanle Cisman", class:"Form Two", sub:{Geo:46, Isl:71, Arab:86, Eng:45, His:41, Bio:56, Chem:48, Som:60, Maths:47, Phy:24, ICT:55}},
+{roll:"1027", name:"C/qadir Ayanle Siciid", class:"Form Two", sub:{Geo:64, Isl:65, Arab:66, Eng:55, His:35, Bio:38, Chem:25, Som:70, Maths:54, Phy:33, ICT:70}},
+{roll:"1005", name:"Mawliid Siciid Axmad", class:"Form Two", sub:{Geo:42, Isl:50, Arab:62, Eng:57, His:45, Bio:53, Chem:51, Som:65, Maths:55, Phy:22, ICT:69}},
+{roll:"1024", name:"Axmad Muxiyadiin Axmad", class:"Form Two", sub:{Geo:52, Isl:59, Arab:61, Eng:39, His:51, Bio:50, Chem:58, Som:60, Maths:46, Phy:27, ICT:63}},
+{roll:"1013", name:"Maxamad Mukhtaar C/samad", class:"Form Two", sub:{Geo:52, Isl:67, Arab:70, Eng:67, His:47, Bio:41, Chem:40, Som:64, Maths:24, Phy:31, ICT:59}},
+{roll:"1010", name:"Xaliimo Maxamuud Xasan", class:"Form Two", sub:{Geo:70, Isl:53, Arab:52, Eng:44, His:47, Bio:38, Chem:48, Som:75, Maths:45, Phy:23, ICT:67}},
+{roll:"1022", name:"C/lahi Khaliif C/raxman", class:"Form Two", sub:{Geo:52, Isl:49, Arab:54, Eng:59, His:39, Bio:46, Chem:65, Som:84, Maths:39, Phy:29, ICT:43}},
+{roll:"1015", name:"Nasrudiin Haashin Nuur", class:"Form Two", sub:{Geo:62, Isl:45, Arab:51, Eng:57, His:51, Bio:40, Chem:30, Som:68, Maths:54, Phy:32, ICT:67}},
+{roll:"1025", name:"C/xakiin Maxamad Cali", class:"Form Two", sub:{Geo:66, Isl:52, Arab:67, Eng:49, His:38, Bio:44, Chem:55, Som:66, Maths:51, Phy:18, ICT:50}},
+{roll:"1020", name:"C/raxman Jibriil Muuse", class:"Form Two", sub:{Geo:56, Isl:56, Arab:50, Eng:53, His:48, Bio:57, Chem:56, Som:50, Maths:61, Phy:27, ICT:40}},
+{roll:"1012", name:"Maxamuud Caynaanshe Khaalid", class:"Form Two", sub:{Geo:62, Isl:65, Arab:46, Eng:27, His:31, Bio:52, Chem:65, Som:75, Maths:51, Phy:34, ICT:45}},
 
 // ===== FORM ONE (FASALKA 1) - 24 ARDAY =====
-{roll:913, name:"Miski Ismaaciil Maxamad", class:"Form One", sub:{Geo:88, Isl:83, Arab:74, Eng:85, His:79, Bio:80, Chem:89, Som:82, Maths:69, Phy:71, ICT:90}},
-{roll:921, name:"Fatxi Khaliif C/raxman", class:"Form One", sub:{Geo:58, Isl:77, Arab:79, Eng:67, His:73, Bio:91, Chem:95, Som:56, Maths:34, Phy:59, ICT:87}},
-{roll:922, name:"C/laahi Maxamad Salaad", class:"Form One", sub:{Geo:46, Isl:69, Arab:72, Eng:78, His:61, Bio:74, Chem:61, Som:72, Maths:58, Phy:69, ICT:79}},
-{roll:903, name:"Axmad Maxamad Jaamac", class:"Form One", sub:{Geo:52, Isl:89, Arab:75, Eng:79, His:30, Bio:53, Chem:55, Som:50, Maths:60, Phy:62, ICT:76}},
-{roll:918, name:"C/shukuur Axmad Cumar", class:"Form One", sub:{Geo:52, Isl:68, Arab:71, Eng:77, His:46, Bio:50, Chem:70, Som:57, Maths:45, Phy:69, ICT:66}},
-{roll:907, name:"Nateexo Axmad Muumin", class:"Form One", sub:{Geo:58, Isl:68, Arab:61, Eng:69, His:50, Bio:53, Chem:90, Som:68, Maths:26, Phy:58, ICT:64}},
-{roll:915, name:"Muscab C/qadir Cali", class:"Form One", sub:{Geo:52, Isl:76, Arab:67, Eng:83, His:43, Bio:53, Chem:67, Som:50, Maths:40, Phy:49, ICT:73}},
-{roll:901, name:"C/raxman Siciid Saalax", class:"Form One", sub:{Geo:54, Isl:61, Arab:58, Eng:69, His:39, Bio:74, Chem:56, Som:46, Maths:50, Phy:59, ICT:79}},
-{roll:902, name:"Axmad Maxamad Siciid", class:"Form One", sub:{Geo:54, Isl:70, Arab:52, Eng:63, His:34, Bio:71, Chem:52, Som:68, Maths:44, Phy:60, ICT:73}},
-{roll:916, name:"Mascuud C/qadir Cali", class:"Form One", sub:{Geo:46, Isl:76, Arab:50, Eng:81, His:39, Bio:50, Chem:64, Som:58, Maths:40, Phy:38, ICT:72}},
-{roll:919, name:"Daauud Faarax Maxamuud", class:"Form One", sub:{Geo:0, Isl:71, Arab:68, Eng:75, His:46, Bio:50, Chem:58, Som:76, Maths:50, Phy:54, ICT:65}},
-{roll:908, name:"Muno C/risaq C/raxman", class:"Form One", sub:{Geo:34, Isl:55, Arab:44, Eng:71, His:46, Bio:56, Chem:79, Som:62, Maths:36, Phy:58, ICT:56}},
-{roll:911, name:"Faadumo C/qadir Xirsi", class:"Form One", sub:{Geo:42, Isl:71, Arab:40, Eng:63, His:41, Bio:50, Chem:58, Som:56, Maths:32, Phy:53, ICT:87}},
-{roll:910, name:"Maxamad Cabdi Maxamad", class:"Form One", sub:{Geo:66, Isl:49, Arab:40, Eng:65, His:38, Bio:55, Chem:50, Som:50, Maths:55, Phy:64, ICT:52}},
-{roll:912, name:"Maxamad Maxamud Siciid", class:"Form One", sub:{Geo:38, Isl:83, Arab:36, Eng:75, His:45, Bio:41, Chem:61, Som:55, Maths:30, Phy:48, ICT:65}},
-{roll:920, name:"Axmad Buruuj Axmad", class:"Form One", sub:{Geo:46, Isl:57, Arab:35, Eng:79, His:45, Bio:50, Chem:68, Som:56, Maths:40, Phy:33, ICT:60}},
-{roll:914, name:"Sumayo Muxiyadiin Axmad", class:"Form One", sub:{Geo:42, Isl:59, Arab:37, Eng:79, His:43, Bio:51, Chem:52, Som:52, Maths:42, Phy:55, ICT:45}},
-{roll:904, name:"C/rakiin Axmad Ismacail", class:"Form One", sub:{Geo:38, Isl:67, Arab:45, Eng:77, His:43, Bio:42, Chem:60, Som:74, Maths:24, Phy:38, ICT:44}},
-{roll:923, name:"C/laahi C/qadir Maxamad", class:"Form One", sub:{Geo:38, Isl:64, Arab:55, Eng:79, His:55, Bio:48, Chem:55, Som:60, Maths:18, Phy:27, ICT:56}},
-{roll:917, name:"Maxamad C/qadir Ibrahim", class:"Form One", sub:{Geo:36, Isl:57, Arab:45, Eng:73, His:42, Bio:44, Chem:62, Som:50, Maths:40, Phy:32, ICT:70}},
-{roll:906, name:"Maxamad C/risaaq Cali", class:"Form One", sub:{Geo:55, Isl:56, Arab:43, Eng:59, His:39, Bio:56, Chem:61, Som:48, Maths:40, Phy:44, ICT:52}},
-{roll:909, name:"Mumtaaz C/risaq C/raxman", class:"Form One", sub:{Geo:55, Isl:50, Arab:59, Eng:65, His:51, Bio:45, Chem:55, Som:55, Maths:32, Phy:42, ICT:45}},
-{roll:905, name:"Yuusuf Axmad Warsame", class:"Form One", sub:{Geo:54, Isl:55, Arab:52, Eng:81, His:46, Bio:50, Chem:48, Som:54, Maths:38, Phy:39, ICT:36}}
+{roll:"913", name:"Miski Ismaaciil Maxamad", class:"Form One", sub:{Geo:88, Isl:83, Arab:74, Eng:85, His:79, Bio:80, Chem:89, Som:82, Maths:69, Phy:71, ICT:90}},
+{roll:"921", name:"Fatxi Khaliif C/raxman", class:"Form One", sub:{Geo:58, Isl:77, Arab:79, Eng:67, His:73, Bio:91, Chem:95, Som:56, Maths:34, Phy:59, ICT:87}},
+{roll:"922", name:"C/laahi Maxamad Salaad", class:"Form One", sub:{Geo:46, Isl:69, Arab:72, Eng:78, His:61, Bio:74, Chem:61, Som:72, Maths:58, Phy:69, ICT:79}},
+{roll:"903", name:"Axmad Maxamad Jaamac", class:"Form One", sub:{Geo:52, Isl:89, Arab:75, Eng:79, His:30, Bio:53, Chem:55, Som:50, Maths:60, Phy:62, ICT:76}},
+{roll:"918", name:"C/shukuur Axmad Cumar", class:"Form One", sub:{Geo:52, Isl:68, Arab:71, Eng:77, His:46, Bio:50, Chem:70, Som:57, Maths:45, Phy:69, ICT:66}},
+{roll:"907", name:"Nateexo Axmad Muumin", class:"Form One", sub:{Geo:58, Isl:68, Arab:61, Eng:69, His:50, Bio:53, Chem:90, Som:68, Maths:26, Phy:58, ICT:64}},
+{roll:"915", name:"Muscab C/qadir Cali", class:"Form One", sub:{Geo:52, Isl:76, Arab:67, Eng:83, His:43, Bio:53, Chem:67, Som:50, Maths:40, Phy:49, ICT:73}},
+{roll:"901", name:"C/raxman Siciid Saalax", class:"Form One", sub:{Geo:54, Isl:61, Arab:58, Eng:69, His:39, Bio:74, Chem:56, Som:46, Maths:50, Phy:59, ICT:79}},
+{roll:"902", name:"Axmad Maxamad Siciid", class:"Form One", sub:{Geo:54, Isl:70, Arab:52, Eng:63, His:34, Bio:71, Chem:52, Som:68, Maths:44, Phy:60, ICT:73}},
+{roll:"916", name:"Mascuud C/qadir Cali", class:"Form One", sub:{Geo:46, Isl:76, Arab:50, Eng:81, His:39, Bio:50, Chem:64, Som:58, Maths:40, Phy:38, ICT:72}},
+{roll:"919", name:"Daauud Faarax Maxamuud", class:"Form One", sub:{Geo:0, Isl:71, Arab:68, Eng:75, His:46, Bio:50, Chem:58, Som:76, Maths:50, Phy:54, ICT:65}},
+{roll:"908", name:"Muno C/risaq C/raxman", class:"Form One", sub:{Geo:34, Isl:55, Arab:44, Eng:71, His:46, Bio:56, Chem:79, Som:62, Maths:36, Phy:58, ICT:56}},
+{roll:"911", name:"Faadumo C/qadir Xirsi", class:"Form One", sub:{Geo:42, Isl:71, Arab:40, Eng:63, His:41, Bio:50, Chem:58, Som:56, Maths:32, Phy:53, ICT:87}},
+{roll:"910", name:"Maxamad Cabdi Maxamad", class:"Form One", sub:{Geo:66, Isl:49, Arab:40, Eng:65, His:38, Bio:55, Chem:50, Som:50, Maths:55, Phy:64, ICT:52}},
+{roll:"912", name:"Maxamad Maxamud Siciid", class:"Form One", sub:{Geo:38, Isl:83, Arab:36, Eng:75, His:45, Bio:41, Chem:61, Som:55, Maths:30, Phy:48, ICT:65}},
+{roll:"920", name:"Axmad Buruuj Axmad", class:"Form One", sub:{Geo:46, Isl:57, Arab:35, Eng:79, His:45, Bio:50, Chem:68, Som:56, Maths:40, Phy:33, ICT:60}},
+{roll:"914", name:"Sumayo Muxiyadiin Axmad", class:"Form One", sub:{Geo:42, Isl:59, Arab:37, Eng:79, His:43, Bio:51, Chem:52, Som:52, Maths:42, Phy:55, ICT:45}},
+{roll:"904", name:"C/rakiin Axmad Ismacail", class:"Form One", sub:{Geo:38, Isl:67, Arab:45, Eng:77, His:43, Bio:42, Chem:60, Som:74, Maths:24, Phy:38, ICT:44}},
+{roll:"923", name:"C/laahi C/qadir Maxamad", class:"Form One", sub:{Geo:38, Isl:64, Arab:55, Eng:79, His:55, Bio:48, Chem:55, Som:60, Maths:18, Phy:27, ICT:56}},
+{roll:"917", name:"Maxamad C/qadir Ibrahim", class:"Form One", sub:{Geo:36, Isl:57, Arab:45, Eng:73, His:42, Bio:44, Chem:62, Som:50, Maths:40, Phy:32, ICT:70}},
+{roll:"906", name:"Maxamad C/risaaq Cali", class:"Form One", sub:{Geo:55, Isl:56, Arab:43, Eng:59, His:39, Bio:56, Chem:61, Som:48, Maths:40, Phy:44, ICT:52}},
+{roll:"909", name:"Mumtaaz C/risaq C/raxman", class:"Form One", sub:{Geo:55, Isl:50, Arab:59, Eng:65, His:51, Bio:45, Chem:55, Som:55, Maths:32, Phy:42, ICT:45}},
+{roll:"905", name:"Yuusuf Axmad Warsame", class:"Form One", sub:{Geo:54, Isl:55, Arab:52, Eng:81, His:46, Bio:50, Chem:48, Som:54, Maths:38, Phy:39, ICT:36}}
 ];
 
 // ============================================================
 // FUNCSHOONO
 // ============================================================
+
+// Console log si loo hubiyo tiroda ardayda
+console.log("Tirada ardayda waa: " + students.length);
+
+// Tijaabi in array-ku yahay mid sax ah
+console.log("Ardayga ugu horreeya: ", students[0]);
 
 function getGrade(avg) {
     if (avg >= 91) return "A+";
@@ -345,94 +352,4 @@ function getGrade(avg) {
     if (avg >= 81) return "A-";
     if (avg >= 76) return "B+";
     if (avg >= 71) return "B";
-    if (avg >= 66) return "B-";
-    if (avg >= 61) return "C+";
-    if (avg >= 56) return "C";
-    if (avg >= 50) return "C-";
-    if (avg >= 41) return "D";
-    return "F";
-}
-
-function searchStudent() {
-    const input = document.getElementById('rollInput');
-    const roll = parseInt(input.value.trim());
-    const msg = document.getElementById('msg');
-    const card = document.getElementById('card');
-
-    msg.className = 'msg';
-    msg.style.display = 'none';
-    card.classList.remove('show');
-
-    if (isNaN(roll)) {
-        msg.textContent = '❌ Fadlan geli lambar sax ah (tusaale: 1101)';
-        msg.className = 'msg error';
-        msg.style.display = 'block';
-        return;
-    }
-
-    const student = students.find(s => s.roll === roll);
-
-    if (!student) {
-        msg.textContent = '❌ Lamaan helin arday leh Roll No: ' + roll;
-        msg.className = 'msg error';
-        msg.style.display = 'block';
-        return;
-    }
-
-    const subs = student.sub;
-    const scores = Object.values(subs);
-    const total = scores.reduce((a, b) => a + b, 0);
-    const count = scores.length;
-    const avg = total / count;
-    const passed = avg >= 50;
-    const grade = passed ? 'GUDBAY' : 'DHACAY';
-    const level = getGrade(avg);
-
-    document.getElementById('sName').textContent = student.name;
-    document.getElementById('sRoll').textContent = student.roll;
-    document.getElementById('sClass').textContent = 'Fasalka: ' + student.class;
-    document.getElementById('total').textContent = total;
-    document.getElementById('avg').textContent = avg.toFixed(2);
-    document.getElementById('count').textContent = count;
-    document.getElementById('levelDisplay').textContent = level;
-
-    const gradeEl = document.getElementById('gradeDisplay');
-    gradeEl.textContent = grade;
-    gradeEl.className = 'grade' + (passed ? '' : ' fail');
-
-    const tbody = document.getElementById('subjectsBody');
-    tbody.innerHTML = '';
-    for (const [name, score] of Object.entries(subs)) {
-        const tr = document.createElement('tr');
-        const passClass = score >= 50 ? 'pass' : 'fail';
-        tr.innerHTML = `
-            <td class="subject">${name}</td>
-            <td style="text-align:right;">
-                <span class="score ${passClass}">${score}</span>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    }
-
-    msg.textContent = '✅ Natiijada ' + student.name + ' ee Sanad dugsiyeedka 2025-2026!';
-    msg.className = 'msg success';
-    msg.style.display = 'block';
-    card.classList.add('show');
-}
-
-// ============================================================
-// DHACDOOYINKA
-// ============================================================
-
-document.getElementById('searchBtn').addEventListener('click', searchStudent);
-document.getElementById('rollInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') searchStudent();
-});
-
-window.addEventListener('load', function() {
-    document.getElementById('rollInput').focus();
-});
-</script>
-
-</body>
-</html>
+    if (avg >= 66)
